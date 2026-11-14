@@ -3,12 +3,12 @@ import { Box } from '@mui/material';
 import BlankParams from '../BlankParams/BlankParams';
 import MachineParams from '../MachineParams/MachineParams';
 import ToolParams from '../ToolParams/ToolParams';
-import ToolImage from '../ToolImage/ToolImage';
 import ProcessingParams from '../ProcessingParams/ProcessingParams';
 import Result from '../Result/Result';
 import { styles } from './useStyles';
 import type { State } from '../../types';
 import { calculate } from '../../calc';
+import Visualization3D from '../Visualization3D/Visualization3D';
 
 interface Props { state: State; setState: (s: State) => void }
 
@@ -25,11 +25,14 @@ const Content: FC<Props> = ({ state: s, setState }) => {
           onDiameter={(diameter) => set({ diameter })} />
       </Box>
       <Box sx={styles.column}>
-        <ToolImage />
-        <ProcessingParams holeType={s.holeType} depth={s.depth}
-          onHoleType={(holeType) => set({ holeType })}
-          onDepth={(depth) => set({ depth })} />
-      </Box>
+        <Visualization3D state={s} />
+        <ProcessingParams
+        holeType={s.holeType}
+        depth={s.depth}
+       onHoleType={(holeType) => set({ holeType })}
+        onDepth={(depth) => set({ depth })}
+      />
+</Box>
       <Box sx={styles.column}>
         <Result result={calculate(s)} />
       </Box>
