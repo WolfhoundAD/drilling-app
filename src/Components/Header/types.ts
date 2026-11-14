@@ -1,0 +1,1 @@
+export interface MenuItem { id: 'open' | 'save'; title: string }
