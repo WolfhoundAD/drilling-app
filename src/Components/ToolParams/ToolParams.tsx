@@ -1,9 +1,10 @@
-import { FC } from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import type { FC } from 'react';
+import { Autocomplete, InputAdornment, TextField } from '@mui/material';
+import HandymanIcon from '@mui/icons-material/Handyman';
 import Card from '../Card/Card';
 import { drillTypes } from '../../Dictionaries/drillTypes';
 import { toolMaterials } from '../../Dictionaries/toolMaterials';
-import { Option } from '../../types';
+import type { Option } from '../../types';
 
 interface Props {
   type: Option | null; material: Option | null; diameter: number;
@@ -13,20 +14,28 @@ interface Props {
 }
 
 const ToolParams: FC<Props> = (p) => (
-  <Card title="Параметры сверла">
-    <Autocomplete disablePortal options={drillTypes} value={p.type}
+  <Card title="Параметры сверла" icon={<HandymanIcon fontSize="small" />} accent="#7c3aed">
+    <Autocomplete
+      disablePortal options={drillTypes} value={p.type}
       isOptionEqualToValue={(a, b) => a.id === b.id}
       onChange={(_, v) => p.onType(v)}
-      renderInput={(x) => <TextField {...x} label="Тип сверла" />} />
-    <Autocomplete disablePortal options={toolMaterials} value={p.material}
+      renderInput={(x) => <TextField {...x} label="Тип сверла" />}
+    />
+    <Autocomplete
+      disablePortal options={toolMaterials} value={p.material}
       isOptionEqualToValue={(a, b) => a.id === b.id}
       onChange={(_, v) => p.onMaterial(v)}
-      renderInput={(x) => <TextField {...x} label="Материал режущей части" />} />
-    <TextField label="Диаметр сверла, мм" type="number"
+      renderInput={(x) => <TextField {...x} label="Материал режущей части" />}
+    />
+    <TextField
+      label="Диаметр сверла"
+      type="number"
       value={p.diameter || ''}
       inputProps={{ min: 0, step: 0.1 }}
+      InputProps={{ endAdornment: <InputAdornment position="end">мм</InputAdornment> }}
       onKeyDown={(e) => e.key === '-' && e.preventDefault()}
-      onChange={(e) => p.onDiameter(Math.max(0, Number(e.target.value)))} />
+      onChange={(e) => p.onDiameter(Math.max(0, Number(e.target.value)))}
+    />
   </Card>
 );
 export default ToolParams;

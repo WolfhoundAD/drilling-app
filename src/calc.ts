@@ -1,4 +1,4 @@
-import { State } from './types';
+import type { State } from './types';
 
 export interface Result {
   rpm: number; speed: number; feed: number; power: number;
