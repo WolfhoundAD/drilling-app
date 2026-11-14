@@ -26,7 +26,7 @@ const SmartAdvice: FC<Props> = ({ state, result }) => {
       accent="#16a34a"
     >
       {loading && (
-        <Box display="flex" alignItems="center" gap={1.5}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <CircularProgress size={20} />
           <Typography variant="body2" color="text.secondary">
             Загрузка ML-модели…
@@ -60,7 +60,7 @@ const SmartAdvice: FC<Props> = ({ state, result }) => {
               }
               sx={{ height: 8, borderRadius: 4, mt: 0.5, mb: 0.5 }}
             />
-            <Typography variant="body2" fontWeight={600}>
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>
               {(prediction.wearRisk * 100).toFixed(0)}%
             </Typography>
           </Box>

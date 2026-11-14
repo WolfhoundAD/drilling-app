@@ -12,7 +12,7 @@ interface Props {
 const Card: FC<Props> = ({ title, icon, accent = '#2563eb', children }) => (
   <Accordion defaultExpanded disableGutters>
     <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, py: 0.5 }}>
-      <Box display="flex" alignItems="center" gap={1.25}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
         {icon && (
           <Box
             sx={{
